@@ -12,11 +12,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install apidoc
+        run: npm install apidoc -g
         working-directory: nodeServer
 
-      - name: Generate API documentation
+      - name: Generate API DOCS
         run: npm run doc
         working-directory: nodeServer
 
