@@ -1,0 +1,27 @@
+{
+  "name": "koa-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js",
+    "build": "pm2 start index.js",
+    "doc": "apidoc -i ./router -o apidoc/"
+  },
+  "author": "SCY",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "croner": "^6.0.3",
+    "dotenv": "^16.0.1",
+    "koa": "^2.13.4",
+    "koa-body": "^5.0.0",
+    "koa-mount": "^4.0.0",
+    "koa-router": "^12.0.0",
+    "koa-static": "^5.0.0",
+    "koa2-cors": "^2.0.6",
+    "nodemon": "^2.0.20",
+    "ws": "^8.13.0"
+  }
+}
