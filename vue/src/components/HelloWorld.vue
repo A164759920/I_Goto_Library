@@ -20,7 +20,7 @@ import CustomInputVue from "./CusInput"
 export default {
     data: function () {
         return {
-            DOMAIN: "",
+            DOMAIN: "https://test.api.roadrunner2002.top",
             newCookie: "",
             libList: [],
             libId: "",
@@ -66,7 +66,6 @@ export default {
         },
         changeSeat: async function () {
             if (this.libId && this.seatName) {
-                // console.log(this.libId, this.seatName)
                 try {
                     const res = await axios.post(`${this.DOMAIN}/lib/changeSeat`, {
                         libId: this.libId,
@@ -107,18 +106,10 @@ export default {
             } catch (error) {
                 console.log("[1004]", error)
             }
-        }
+        },
+
     },
     mounted: async function () {
-        const NODE_PORT = process.env.VUE_APP_NODE_PORT
-        const IS_HTTPS = process.env.VUE_APP_IS_HTTPS
-        const serverIP = process.env.VUE_APP_SERVER_IPV4_ADDR
-        if (IS_HTTPS == "on") {
-            this.DOMAIN = `https://${serverIP}:${NODE_PORT}`
-        }
-        else {
-            this.DOMAIN = `http://${serverIP}:${NODE_PORT}`
-        }
         axios.get(`${this.DOMAIN}/test`).then((res) => {
             console.log("测试接口成功", res.data)
         }, (req) => {
@@ -152,13 +143,6 @@ export default {
         height: 100%;
         background-color: whitesmoke;
 
-        .ticketStep {
-            width: 100%;
-            height: 50px;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-
         .myinput {
             width: 80%;
             margin-bottom: 30px;
@@ -167,12 +151,6 @@ export default {
         .urlinput {
             width: 300px;
             margin-bottom: 10px;
-        }
-
-        .Ticketinput {
-            width: 400px;
-            margin-bottom: 30px;
-            font-weight: bolder;
         }
 
         .mycascader {

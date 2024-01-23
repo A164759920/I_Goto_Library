@@ -1,13 +1,14 @@
+const fs = require("fs");
+
 const CookeObj = {
   Cookie:
-    "FROM_TYPE=weixin; v=5.5; Hm_lvt_7ecd21a13263a714793f376c18038a87=1693999256; wechatSESS_ID=5999daf6f0d75bc7251af3336c9f626f76e9ace3899bd7f9; Authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjM5MzAwNzMzLCJzY2hJZCI6MTAxLCJleHBpcmVBdCI6MTY5NDQzODU1MX0.rLVYNPi8M-0iwA_pLYjsV-_jw0WpoSsBCn5x2oMWev9GXmRsF-Vxg1xZFtDUEttsMbaXiI0xYQOTdZqGRoFOkUXl-fr8_MRXiHNYG6l_trg1cTartuMeR_siFm0L509PoEjSZqdzYsJPbtz4F2E7L07ePLzzCO1Lss4E55mrSLHjoovBuH5QXS62D-xiGbZKXv1zER1Xo_Hvpz5Y1ip-f1y61_NZU-hwe9qjq3JU6Eddc4MAjsWSpPSgNpMbZRcyg3UZePQOxXNwc4chx2PtxqmlGofzvyzqx8l3zJP1IR4vLcZMYJ8UCClHBsiXDDAbPx8NVeUyJfRHsZNWQKK-VA; Hm_lpvt_7ecd21a13263a714793f376c18038a87=1694434791; SERVERID=e3fa93b0fb9e2e6d4f53273540d4e924|1694436422|1694434790",
+    "FROM_TYPE=weixin; v=5.5; wechatSESS_ID=92813014a4cfa33bbec379f42bd40633c923d26e4fa479a1; Authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjM5MzAwNzMzLCJzY2hJZCI6MTAxLCJleHBpcmVBdCI6MTcwNTY0NzkzNn0.DUz6cNlGZ1wTIRtG2kK4W0H3R1R3j1pPBzq2Rv2PYEHmpzmciaA17MG8sD9uhPY60H0U6fHOFNfqyOuXst8vKCNni93-YB6Ea9ApMQlqCBSV0MEennXKfPPxQqT3NhPMuE_nT2rAMJ6Vvin59sRuIkzpBgLY-CFv9vTyZCmMt1t26oPN9JbsD7OWQH6ddsjY_GAGcTvwBdqt35mybYtEk5bIbfUH23RqmlKykwEcg3DX2cUfm35--v0b1tUIc2wiZlA2ho63N5PrtlnjHXb53Ig58CYRfgHeXDn0CF9kMPc4PkchEjg2iFIYeVHzbBIzxmdSQZVHSqs4yRO1mnD0Sg; Hm_lvt_7ecd21a13263a714793f376c18038a87=1705640738; Hm_lpvt_7ecd21a13263a714793f376c18038a87=1705640738; SERVERID=82967fec9605fac9a28c437e2a3ef1a4|1705640742|1705640731",
   libId: 125492,
   key: "10,79.",
   seatName: "225",
   keyList: [],
 };
-// 写一个根据lib_id获取对应lib_Name的函数
-
+  
 const libList = [
   {
     lib_id: 369,
@@ -41,7 +42,43 @@ const libList = [
   },
 ];
 
+// 自动加载本地数据
+(function (CookeObj, libList) {
+  try {
+    const data = fs.readFileSync("./fuckinglib/data.json", "utf8");
+    const _data = JSON.parse(data);
+    CookeObj = _data.CookeObj;
+    libList = _data.libList;
+    console.log("✅data.json加载成功");
+  } catch (err) {
+    console.error("❌data.json不存在", err.message);
+  }
+})(CookeObj, libList);
+
+// 保存数据
+function saveLibData() {
+  const _data = {
+    CookeObj,
+    libList,
+  };
+  fs.writeFileSync(
+    "./fuckinglib/data.json",
+    JSON.stringify(_data),
+    "utf8",
+    function (err) {
+      if (err) {
+        console.log("❌保存数据失败：", err);
+        process.exit(0);
+      } else {
+        console.log("✅保存数据成功..");
+        process.exit(0);
+      }
+    }
+  );
+}
+
 module.exports = {
   CookeObj,
   libList,
+  saveLibData,
 };

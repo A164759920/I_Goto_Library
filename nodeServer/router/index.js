@@ -16,11 +16,8 @@ const {
  * @apiDescription
  *  已在接口中对Cookie进行了切分处理，直接将抓包Cookie原封不动传入即可
  *
- * @apiParam {String} newCookie 有效Cookie值
- * @apiParamExample {json} Request-Example:
- * {
- *    "newCookie": "FROM_TYPE=weixin; v=5.5; Hm_lvt_7ecd21a13263a714793f376c18038a87=1693999256; wechatSESS_ID=XXXX; Authorization=XXX; Hm_lpvt_7ecd21a13263a714793f376c18038a87=1694434791; SERVERID=XXXX|1694436422|1694434790"
- * }
+ * @apiBody {String} newCookie  有效Cookie值.
+ *
  * @apiSuccessExample {json} Response-Example:
  * {
  *    "code": 0,
@@ -45,13 +42,33 @@ router.get("/lib/verifyCookie", verifyCookieController);
  * @apiGroup 后端
  * @apiDescription
  *  ❗该接口使用需提前抓包并将数据存入myCooke.js的libList中
+ * 
+ *  @apiSampleRequest /lib/getLibList
+ * 
  *  @apiSuccessExample {json} Response-Example:
  * {
  *  "code": 0,
     "data": {
-      "libId": "374",
-      "libName": "三楼社科B区",
-      "seatName":"190" 
+      "libId": "374", //已选择的场馆id
+      "libList":[
+                  {
+                "lib_id": 369,
+                "lib_floor": "1楼",
+                "lib_name": "报刊阅览室"
+            },
+            {
+                "lib_id": 371,
+                "lib_floor": "2楼",
+                "lib_name": "自然科学阅览室A区"
+            },
+            {
+                "lib_id": 372,
+                "lib_floor": "2楼",
+                "lib_name": "自然科学阅览室B区"
+            },
+      ]
+      "libName": "三楼社科B区",  // 已选中的场馆
+      "seatName":"190"  //已选择的座位
     }
  * }
  */
@@ -64,6 +81,7 @@ router.get("/lib/getLibList", syncgetLibListController);
  *  ❗该接口使用前需调用setCookie接口或手动设置有效Cookie
  * 
  *  【建议用法】:首次使用时先设置一遍Cookie，然后手动调该接口获取LibList，并填入myCooke.js，此后无需再调用该接口
+ * 
  *  @apiSuccessExample {json} Response-Example:
  * {
  *  "code": 0,
@@ -80,13 +98,9 @@ router.get(`/lib/getLibList2`, asyncgetLibListController);
  * @api {POST} /lib/changeSeat 修改座位
  * @apiGroup 后端
  * 
- * @apiParam {String} libId 场馆ID
- * @apiParam {String} seatName 座位名
- * @apiParamExample {json} Request-Example:
- * {
- *      "libId": "374",
- *      "seatName": "190"
- * }
+ * @apiBody {String} libId 场馆ID
+ * @apiBody {String} seatName 座位名
+ * 
  * @apiSuccessExample {json} Response-Example:
  * {
  *  "code": 0,

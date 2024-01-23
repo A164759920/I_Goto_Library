@@ -1,6 +1,7 @@
-# 使用前请根据自己的compose版本进行修改,以2.18.1为例
-# 添加自定义网桥
+# 请先添加自定义docker网络 mynet
 # docker network create --driver bridge --subnet 172.22.9.0/24 --gateway 172.22.9.1 mynet
+
+# 使用前请根据自己的compose版本进行修改
 version: "2.18.1"
 
 services:
@@ -23,19 +24,20 @@ services:
       mynet:
         ipv4_address: 172.22.9.3
 
+  # 开发环境的docker版vue, 生产部署时，可注释该部分，改用npm run build 命令
   vue:
     env_file:
       - .env
     environment:
       - VUE_APP_IS_HTTPS=${IS_HTTPS}
       - VUE_APP_NODE_PORT=${NODE_PORT}
-      - VUE_APP_SERVER_IPV4_ADDR=${SERVER_IPV4_ADDR}
+      - VUE_APP_PORT=${VUE_PORT}
     build:
       context: ./vue
       dockerfile: Dockerfile
     image: libvue:1.0
     ports:
-      - "8080:8080"
+      - "${VUE_PORT}:${VUE_PORT}"
     container_name: lib_vueContainer
     volumes:
       - ./vue:/app

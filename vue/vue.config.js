@@ -29,7 +29,7 @@ function getNetworkIp() {
 module.exports = defineConfig({
   devServer: {
     host: getNetworkIp(),
-    port: 8080,
+    port: process.env.VUE_APP_PORT || 8080,
   },
   transpileDependencies: true,
   lintOnSave: false,

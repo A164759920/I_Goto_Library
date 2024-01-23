@@ -404,6 +404,7 @@ async function getLibList() {
     const LibList = res.data.data.userAuth.reserve.libs;
     // 遍历liblist
     CookeObj.libList = [];
+
     LibList.forEach((item) => {
       const libObj = {
         lib_id: item.lib_id,
@@ -412,6 +413,7 @@ async function getLibList() {
       };
       CookeObj.libList.push(libObj);
     });
+    console.log("查询结果", CookeObj.libList);
     return {
       code: 0,
       data: {

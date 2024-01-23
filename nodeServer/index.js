@@ -10,8 +10,10 @@ const koaBody = require("koa-body");
 const static = require("koa-static");
 const mount = require("koa-mount");
 
+// custom require
 const { MOUNT_NAME } = require("./config.default.js");
 const { router } = require("./router/index");
+const { saveLibData } = require("./fuckinglib/myCooke.js");
 
 const server = new Koa();
 server
@@ -31,8 +33,8 @@ server
   .use(router.routes())
   .use(router.allowedMethods());
 
-const IS_HTTPS = process.env.IS_HTTPS;
-const NODE_PORT = process.env.NODE_PORT;
+const IS_HTTPS = process.env.IS_HTTPS || "off";
+const NODE_PORT = process.env.NODE_PORT || 8899;
 
 if (IS_HTTPS === "on") {
   const { options } = require("./ssl/index.js");
@@ -46,3 +48,11 @@ if (IS_HTTPS === "on") {
     console.log(`🚀 HTTP server is running on: ${NODE_PORT}`);
   });
 }
+
+// 监听终止信号
+["SIGINT", "SIGTERM", "SIGQUIT"].forEach((signal) => {
+  process.on(signal, () => {
+    saveLibData();
+    process.exit(0);
+  });
+});
