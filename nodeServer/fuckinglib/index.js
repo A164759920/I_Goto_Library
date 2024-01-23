@@ -1,4 +1,4 @@
-const { CookeObj, libList } = require("./myCooke.js");
+const { CookeObj, libList, saveLibDataAsync } = require("./myCooke.js");
 let { AxiosRequest, DOMAIN } = require("./http.js");
 // const { throttleSendMail } = require("../service/email.service.js");
 const { createSocket } = require("./websocket.js");
@@ -401,32 +401,44 @@ async function getLibList() {
       query:
         "query list {\n userAuth {\n reserve {\n libs(libType: -1) {\n lib_id\n lib_floor\n is_open\n lib_name\n lib_type\n lib_group_id\n lib_comment\n lib_rt {\n seats_total\n seats_used\n seats_booking\n seats_has\n reserve_ttl\n open_time\n open_time_str\n close_time\n close_time_str\n advance_booking\n }\n }\n libGroups {\n id\n group_name\n }\n reserve {\n isRecordUser\n }\n }\n record {\n libs {\n lib_id\n lib_floor\n is_open\n lib_name\n lib_type\n lib_group_id\n lib_comment\n lib_color_name\n lib_rt {\n seats_total\n seats_used\n seats_booking\n seats_has\n reserve_ttl\n open_time\n open_time_str\n close_time\n close_time_str\n advance_booking\n }\n }\n }\n rule {\n signRule\n }\n }\n}",
     });
-    const LibList = res.data.data.userAuth.reserve.libs;
-    // 遍历liblist
-    CookeObj.libList = [];
+    const _LibList = res.data.data.userAuth.reserve.libs;
 
-    LibList.forEach((item) => {
+    // 清空该数组
+    libList.splice(0, libList.length);
+
+    // 遍历liblist
+    _LibList.forEach((item) => {
       const libObj = {
         lib_id: item.lib_id,
         lib_floor: item.lib_floor,
         lib_name: item.lib_name,
       };
-      CookeObj.libList.push(libObj);
+      libList.push(libObj);
     });
-    console.log("查询结果", CookeObj.libList);
-    return {
-      code: 0,
-      data: {
-        libId: CookeObj.libId,
-        libList,
-        libName: getLibNamebyLibId(CookeObj.libId),
-        seatName: CookeObj.seatName,
-      },
-    };
+
+    // 异步保存数据
+    const save_res = await saveLibDataAsync();
+
+    if (save_res.code === 0) {
+      return {
+        code: 0,
+        data: {
+          libId: CookeObj.libId,
+          libList,
+          libName: getLibNamebyLibId(CookeObj.libId),
+          seatName: CookeObj.seatName,
+        },
+      };
+    } else {
+      return {
+        code: 1,
+        data: "[1008]data.json写入失败",
+      };
+    }
   } catch (error) {
     return {
       code: 1,
-      data: "[1008]获取区域列表错误",
+      data: "[1009]获取区域列表错误",
     };
   }
 }
