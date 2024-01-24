@@ -30,12 +30,14 @@
     参考的接口文档中的 **/lib/setCookie** 接口
 
 - (**step3:**) **_获取可选场馆列表_**（首次使用时执行一次即可）**_【需要 Cookie 有效】_**
+
   操作后服务器会自动抓取你所在学校图书馆可供预约的所有场馆信息，并存入服务器中
 
   - **_1.通过配套前端页面设置(推荐)⭐⭐⭐:_**
     ![设置示例](https://github.com/A164759920/I_Goto_Library/blob/main/images/refreshButton.png)
 
   - **_2.手动调用后端接口设置_**
+
     参考的接口文档中的 **/lib/getLibList2** 接口
 
 - (**step4:**) **_选择场馆 + 设置座位号_** **_【需要 Cookie 有效】_**
@@ -46,19 +48,24 @@
     ![设置示例](https://github.com/A164759920/I_Goto_Library/blob/main/images/changeSeat.png)
 
   - **_2.手动调用后端接口设置_**
+
     参考的接口文档中的 **/lib/changeSeat** 接口
 
-## 1.2 所用技术:
+## 1.3 运行时演示:
+
+![演示](https://github.com/A164759920/I_Goto_Library/blob/main/images/run.gif)
+
+## 1.4 所用技术:
 
 查看 **GITHUB** 上相关项目 ISSUE 区后发现，此类项目大多存在许多使用者部署项目困难的问题，因此本项目提供了多种部署方式，最终可实现在手机上完成所有操作，且编写了较为详细的部署步骤，希望能帮助到大家
 
-### 1.2.1 关于 Cookie
+### 1.4.1 关于 Cookie
 
 由于新版我去图书馆采用的 **_Cookie_** 有时限，仍需要借助 **_抓包工具_** 抓取 token，其余部分均已实现了自动化
 
     推荐手机端使用httpCanary,较为方便
 
-### 1.2.2 关于技术栈
+### 1.4.2 关于技术栈
 
 **该项目基于 node.js + Vue2.js 并提供以下功能方便操作：**</br>
 
@@ -67,7 +74,7 @@
 - **docker-compose** 一键 调试 + 部署
 - **nginx** 的 **_conf_** 文件配置示例
 
-# 2.环境配置
+# 2.环境配置 🔨
 
 - node 建议 v14.0.0+ 及以上版本
 - npm
@@ -118,6 +125,7 @@ API 文档:https://a164759920.github.io/I_Goto_Library/
 ⭕ 确保已安装**docker** + **docker-compose**
 
 - **a.配置 docker 网络**
+
   如果只需部署**node 服务器**，请将**docker-compose.yml**文件中的**vue**部分注释
 
 ```
@@ -161,6 +169,7 @@ API 文档:https://a164759920.github.io/I_Goto_Library/
 ⭕ 确保已安装**docker** + **docker-compose**
 
 - **a.配置 docker 网络**
+
   如果只需部署**vue dev 版前端**，请将**docker-compose.yml**文件中的**node**部分注释
 
 ```
