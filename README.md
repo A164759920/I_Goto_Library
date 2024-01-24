@@ -19,12 +19,12 @@
 
 - **step1:** **_抓包获取 Cookie_**
   在开启明日预约前的一小时内，通过抓包软件(如 httpCanary)抓取 Cookie
-  https://github.com/A164759920/I_Goto_Library/blob/main/images/getCookie.png
+  ![抓包示例](https://github.com/A164759920/I_Goto_Library/blob/main/images/getCookie.png)
 
 - **step2:** **_设置 Cookie_**
 
   - **_1.通过仓库配套的前端页面设置(推荐)⭐⭐⭐:_**
-    https://github.com/A164759920/I_Goto_Library/blob/main/images/setCookie.png
+    ![设置示例](https://github.com/A164759920/I_Goto_Library/blob/main/images/setCookie.png)
 
   - **_2.手动调用后端接口设置_**
     参考的接口文档中的 **/lib/setCookie** 接口
@@ -33,7 +33,7 @@
   操作后服务器会自动抓取你所在学校图书馆可供预约的所有场馆信息，并存入服务器中
 
   - **_1.通过配套前端页面设置(推荐)⭐⭐⭐:_**
-    https://github.com/A164759920/I_Goto_Library/blob/main/images/refreshButton.png
+    ![设置示例](https://github.com/A164759920/I_Goto_Library/blob/main/images/refreshButton.png)
 
   - **_2.手动调用后端接口设置_**
     参考的接口文档中的 **/lib/getLibList2** 接口
@@ -43,7 +43,7 @@
 
   - **_1.通过配套前端页面设置(推荐)⭐⭐⭐:_**
     设置时输入座位上的座位编号即可再点击 **"修改座位"** 即可，若选择场馆存在该座位号，则服务器将自动匹配座位的**key**并设置,节省大家手动匹配的繁琐过程
-    https://github.com/A164759920/I_Goto_Library/blob/main/images/changeSeat.png
+    ![设置示例](https://github.com/A164759920/I_Goto_Library/blob/main/images/changeSeat.png)
 
   - **_2.手动调用后端接口设置_**
     参考的接口文档中的 **/lib/changeSeat** 接口
