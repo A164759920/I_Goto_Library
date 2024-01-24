@@ -11,7 +11,11 @@ const static = require("koa-static");
 const mount = require("koa-mount");
 
 // custom require
-const { MOUNT_NAME } = require("./config.default.js");
+const {
+  MOUNT_NAME,
+  DEFAULT_IS_HTTPS,
+  DEFAULT_NODE_PORT,
+} = require("./config.default.js");
 const { router } = require("./router/index");
 const { saveLibData } = require("./fuckinglib/myCooke.js");
 
@@ -33,8 +37,8 @@ server
   .use(router.routes())
   .use(router.allowedMethods());
 
-const IS_HTTPS = process.env.IS_HTTPS || "off";
-const NODE_PORT = process.env.NODE_PORT || 8899;
+const IS_HTTPS = process.env.IS_HTTPS || DEFAULT_IS_HTTPS;
+const NODE_PORT = process.env.NODE_PORT || DEFAULT_NODE_PORT;
 
 if (IS_HTTPS === "on") {
   const { options } = require("./ssl/index.js");

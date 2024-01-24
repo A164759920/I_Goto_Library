@@ -1,17 +1,1 @@
-{
-  "CookeObj": {
-    "Cookie": "FROM_TYPE=weixin; v=5.5; Hm_lvt_7ecd21a13263a714793f376c18038a87=1705640738; wechatSESS_ID=bf2758e90d16ae4c409107563ce19a88843c8d6cb8b9a4b2; Authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjM5MzAwNzMzLCJzY2hJZCI6MTAxLCJleHBpcmVBdCI6MTcwNTk5ODE4NX0.vNyW9Rqzty8kUiX9qQr3Se0WMcjz0FcXO_xAu-9klDz_7HT9rtWwYShERkdrY4TXpjMBEO_54PrxmSTAumj8DIkRvLfo0hT7z1GUe0V959Z-f2AB5Znll1z2FxJIU3ULZq5F-uvyD9X-T7ybpX0L020HTVxUMsEvG2iUygnvZjjrK4xSoZO57Sof_4zPycOI4cN5rcTZv7Aysvg8QzFkG1ANn5w2NMcG3l_2Usry6FFMJEkE54IvzkjGT4mJfK7th4qFEd9sBDJpZDi-C10s4lC-SpJ2jELWPD1F_WB1ZQodDXhT5t_3KkLoouGwpOwOysHQO7lwGHDvp3qiDJ-IiQ; Hm_lpvt_7ecd21a13263a714793f376c18038a87=1705990988;SERVERID=d3936289adfff6c3874a2579058ac651|1705993781|1705993781",
-    "libId": 125492,
-    "key": "10,79.",
-    "seatName": "225",
-    "keyList": []
-  },
-  "libList": [
-    { "lib_id": 369, "lib_floor": "1楼", "lib_name": "报刊阅览室" },
-    { "lib_id": 371, "lib_floor": "2楼", "lib_name": "自然科学阅览室A区" },
-    { "lib_id": 372, "lib_floor": "2楼", "lib_name": "自然科学阅览室B区" },
-    { "lib_id": 125492, "lib_floor": "3楼", "lib_name": "社科阅览室A区" },
-    { "lib_id": 374, "lib_floor": "3楼", "lib_name": "社科阅览室B区" },
-    { "lib_id": 123413, "lib_floor": "2楼", "lib_name": "电子阅览室" }
-  ]
-}
+{"CookeObj":{"Cookie":"FROM_TYPE=weixin; v=5.5; Hm_lvt_7ecd21a13263a714793f376c18038a87=1705640738; wechatSESS_ID=0a5ac6b7ca57c65b5f4c581a8bd070b53501f0b23680945a; Authorization=eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjM5MzAwNzMzLCJzY2hJZCI6MTAxLCJleHBpcmVBdCI6MTcwNjEwMzkzMH0.GwoEGw9FFkSiK8fcP_T1lH3WxgbG8huGHMQ8ofUnn1xLKrqnlXx1vrADBZkVMhIHhUQVsO_h0mIXW9-p_eHagJqzy2Aeao9Eqj2k6nncOzj6oI0R9m3hLtp9Bwipp7OoL6Z_lo9hWjD6BeDs8NW-iYnJFHO9_gz_PkguK3__xh4c3LUpRitKIPD-NgZXdYfSK0gMtm42JAvWYWkkL0F2HIZF8jksdnToENcpxotxhUQVF40aBHmk1u6MVG3gdCrmYwGYx0Zwm8dB1KC9QBGyNd5WXm2091hIlrzPaVV2-0b3pK4SWhTU9-XbNxbI73MQVgSeX9KN37TDtOlz6dydVA; Hm_lpvt_7ecd21a13263a714793f376c18038a87=1706096734;SERVERID=e3fa93b0fb9e2e6d4f53273540d4e924|1706098099|1706096729","libId":371,"key":"10,79","seatName":"225","keyList":[]},"libList":[{"lib_id":369,"lib_floor":"1楼","lib_name":"报刊阅览室"},{"lib_id":371,"lib_floor":"2楼","lib_name":"自然科学阅览室A区"},{"lib_id":372,"lib_floor":"2楼","lib_name":"自然科学阅览室B区"},{"lib_id":125492,"lib_floor":"3楼","lib_name":"社科阅览室A区"},{"lib_id":374,"lib_floor":"3楼","lib_name":"社科阅览室B区"},{"lib_id":123413,"lib_floor":"2楼","lib_name":"电子阅览室"}]}

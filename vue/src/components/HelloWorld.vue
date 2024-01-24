@@ -10,6 +10,8 @@
             <CustomInputVue v-model="seatName" class="myinput" id="seatInput" placeholder="seatNumber" custom="outline">
             </CustomInputVue>
             <button class="button-31" role="button" @click="changeSeat">修改座位</button>
+            <button class="button-31" id="refresh_button" role="button" @click="refreshLibList">刷新可选场馆列表</button>
+            <div style="font-size: 12px;color:rgb(84 92 100) ;">该按钮首次使用时执行一次即可</div>
         </div>
     </div>
 </template>
@@ -20,12 +22,13 @@ import CustomInputVue from "./CusInput"
 export default {
     data: function () {
         return {
-            DOMAIN: "https://test.api.roadrunner2002.top",
+            // DOMAIN: "https://test.api.roadrunner2002.top",
+            DOMAIN: "http://127.0.0.1:8899",
             newCookie: "",
             libList: [],
             libId: "",
             seatName: "",
-            selectedOptions: [1, 2],
+            selectedOptions: [],
         }
     },
     components: {
@@ -107,6 +110,25 @@ export default {
                 console.log("[1004]", error)
             }
         },
+        refreshLibList: async function () {
+            try {
+                const res = await axios.get(`${this.DOMAIN}/lib/getLibList2`)
+                const { code, data } = res.data
+                if (code === 0) {
+                    const { libId, seatName, libList } = data
+                    this.libId = libId
+                    this.seatName = seatName
+                    this.libList = this.handLibList(libList)
+                    this.selectedOptions[0] = libId
+                    alert("✅刷新场馆列表成功，可通过下拉框查看")
+                }
+                else {
+                    alert("❌请先设置有效的Cookie再操作")
+                }
+            } catch (error) {
+                console.log("[1004]", error)
+            }
+        }
 
     },
     mounted: async function () {
@@ -318,6 +340,10 @@ export default {
 .button-31:hover,
 .button-31:focus {
     opacity: .75;
+}
+
+#refresh_button {
+    margin-top: 50px;
 }
 </style>
 

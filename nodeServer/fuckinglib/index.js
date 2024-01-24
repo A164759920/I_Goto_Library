@@ -4,7 +4,12 @@ let { AxiosRequest, DOMAIN } = require("./http.js");
 const { createSocket } = require("./websocket.js");
 const { Event } = require("./pub-sub.js");
 const { Cron } = require("croner");
-//const cron = require("node-cron");
+
+const {
+  NOTINCE_TIME_CRON,
+  START_TIME_CRON,
+  KILL_TIME_CRON,
+} = require("../config.default.js");
 
 var reserveInterval = null;
 var currentSocket = null;
@@ -54,7 +59,7 @@ const cleanTask = Cron(
 
 // 发送提醒
 const noticeTsk = Cron(
-  "45 19 * * *",
+  NOTINCE_TIME_CRON,
   {
     timezone: "Asia/Shanghai",
   },
@@ -83,7 +88,7 @@ const noticeTsk = Cron(
 
 // 循环预约请求
 const successTcatask = Cron(
-  "55 59 19 * * *",
+  START_TIME_CRON,
   {
     timezone: "Asia/Shanghai",
   },
@@ -114,7 +119,7 @@ const successTcatask = Cron(
 
 // 无论成功与否，都将在轮询器执行一分半后kill
 const killTask = Cron(
-  "30 2 20 * * *",
+  KILL_TIME_CRON,
   {
     timezone: "Asia/Shanghai",
   },
